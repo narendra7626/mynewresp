@@ -1,0 +1,68 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block title %}Registration{% endblock %}
+{% block body_block %}
+
+<div class="container my-4 registerbar">
+    <div class="jumbotron">
+        <h3>Please Signup here</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table">
+                <tr>
+                   <td>FirstName</td>
+                    <td><input type="text" name="first_name"></td>
+                </tr>
+                 <tr>
+                   <td>LastName</td>
+                    <td><input type="text" name="last_name"></td>
+                </tr>
+            <tr>
+                <td>ProfilePic</td>
+               <td><input type="file" name="image"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" value="male" name="gender">Male&nbsp;&nbsp;
+                <input type="radio" value="female" name="gender">Female</td>
+            </tr>
+
+                 <tr>
+                   <td>Email</td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+                 <tr>
+                   <td>Username</td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                 <tr>
+                   <td>Password</td>
+                    <td><input type="password" name="password1"></td>
+                </tr>
+                 <tr>
+                   <td>Confirm Password</td>
+                    <td><input type="password" name="password2"></td>
+                </tr>
+<tr>
+    <td>
+        <input type="submit" class="btn btn-danger" value="SignUp">
+    </td>
+    <td>
+        {% if messages %}
+          {% for msg in messages %}
+            <p><font color="red">{{msg}}</font></p>
+          {% endfor %}
+        {% endif %}
+    </td>
+</tr>
+
+            </table>
+
+
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

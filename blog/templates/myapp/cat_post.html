@@ -1,0 +1,23 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Categories{% endblock %}
+{% block body_block %}
+    <main class="container my-4">
+  <h3>{{category}}</h3>
+<div class="row">
+    {% for post in posts %}
+        <div class="col-md-3 mb-4">
+        <div class="card shadow">
+            <a href="{% url 'post_detail' post.id %}"><img src="{{post.image.url}}" height="140px" width="90%"></a>
+        </div>
+        <div class="card-footer">
+            <a class="mx-4" href="{% url 'post_detail' post.id %}">{{post.title}}</a>
+        </div>
+
+        </div>
+        {% empty %}
+        <h3>No {{category}}s</h3>
+    {% endfor %}
+</div>
+    </main>
+{% endblock %}

@@ -1,0 +1,44 @@
+.submenu{
+display:none;
+}
+.menubar:hover{
+    background-color:pink;
+}
+.menubar a:hover{
+    color:yellow;
+}
+.menubar:hover .submenu{
+display:block;
+position:absolute;
+background-color:rgb(0,100,0);
+z-index:3;
+}
+.menubar:hover .submenu li:hover{
+    background-color:blue;
+}
+.menubar:hover .submenu li a{
+    color:white;
+}
+.menubar:hover .submenu li a:hover{
+    color:orange;
+}
+.loginbar{
+    background-color:lightgreen;
+    width:400px;
+    margin-top:100px;
+}
+.loginbar h3{
+    color:white;
+}
+.registerbar{
+    background-color:lightgreen;
+    color:blue;
+}
+.registerbar h3{
+    color:white;
+}
+.footer{
+position:relative;
+    top:380px;
+}
+

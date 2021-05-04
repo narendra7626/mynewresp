@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block body_block %}
+<div class="container loginbar">
+    <div class="jumbotron">
+        <h3>Please Login</h3>
+        <form method="POST">
+          {% csrf_token %}
+           <table>
+            <tr>
+                <td><b>Username:</b></td>
+                <td><input type="text" name="username"></td></tr>
+            <tr><td><br/><b>Password:</b></td>
+                <td> <br/><input type="password" name="password"></td></tr>
+            <td><br/><input type="submit" value="Login" class="btn btn-primary"></td>
+        </table>
+
+        </form>
+    </div>
+<br/>
+    {% if messages %}
+        {% for msg in messages %}
+            <p><font color="red">{{msg}}</font></p>
+        {% endfor %}
+{% endif %}
+</div>
+
+{% endblock %}

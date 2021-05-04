@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Description{% endblock %}
+{% block body_block %}
+<div class="container my-2 mx-2">
+    <h4><font color="red">{{post.title}}</font>:<font color="green">{{post.detail}}</font></h4>
+    <img src="{{post.image.url}}" width="60%" height="350px">
+    <h5>Category:{{post.category}}</h5>
+
+    {% if post.publish_date %}
+    <h6>Published on:{{post.publish_date|date}}</h6>
+    {% else %}
+    <a href="{% url 'post_publish' post.pk %}" class="btn btn-secondary">Publish</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="{% url 'post_edit' post.pk %}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+    <a href="{% url 'post_remove' post.pk %}" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+    {% endif %}
+{% for comment in post.comments.all %}
+{% if user.is_authenticated or comment.approve_comments %}
+ <h5>{{comment.title}}</h5>
+ <h6>PostedBy:{{comment.author}}</h6>
+ <p>{{comment.create_date}}</p>
+  {% if not comment.approve_comments %}
+   <a href="{% url 'comment_approve' comment.pk %}" class="btn btn-success"><i class="fa fa-check"></i></a>
+      <a href="{% url 'comment_remove' comment.pk %}" class="btn btn-warning"><i class="fa fa-remove"></i></a></br>
+  {% endif %}
+{% endif %}
+   {% empty %}
+ <p>No Comments!</p>
+{% endfor %}
+<br/>
+<a href="{% url 'add_comment' pk=post.pk %}" class="btn btn-secondary">AddComment</a>
+</div>
+{% endblock %}

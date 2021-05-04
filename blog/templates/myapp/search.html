@@ -1,0 +1,21 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block body_block %}
+<div class="container mx-2 my-2">
+{% if request.GET.q %}
+    <h4>Search Results for {{request.GET.q}}</h4>
+    {% else %}
+    <h4>No search results</h4>
+{% endif %}
+    {% for post in post_list %}
+    <h2><a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h2>
+    {% if post.publish_date %}
+    <h5>Publishde on:{{post.publish_date|date:"D M Y"}}</h5>
+    {% endif %}
+    <h6><a href="{% url 'post_detail' pk=post.pk %}">Comments:{{post.approve_comments.count}}</a></h6>
+    {% empty %}
+        <h4>No Results </h4>
+    {%endfor %}
+</div>
+{% endblock %}

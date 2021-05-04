@@ -1,0 +1,13 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Comment{% endblock %}
+{% block body_block %}
+<div class="container my-2 mx-2">
+    <h2>Add Your Valuble Comments for the Post <font color="green">{{post}}</font></h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="btn btn-primary" value="Comment">
+</form>
+</div>
+{% endblock %}
